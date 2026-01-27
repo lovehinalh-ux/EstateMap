@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from './Input';
+import { TaxRateReference } from './TaxRateReference';
 import { 
   ESTATE_TAX_EXEMPTION, 
   ESTATE_TAX_BRACKETS,
@@ -19,7 +20,6 @@ export const EstateTaxCalculator: React.FC = () => {
   const [childrenCount, setChildrenCount] = useState<number>(0);
   const [parentCount, setParentCount] = useState<number>(0);
   const [disabilityCount, setDisabilityCount] = useState<number>(0);
-  const [hasFuneralCost, setHasFuneralCost] = useState<boolean>(true);
   const [otherDeductions, setOtherDeductions] = useState<string>('');
 
   // Result States
@@ -38,11 +38,14 @@ export const EstateTaxCalculator: React.FC = () => {
     let currentDeductions = 0;
     
     // Deductions
+    // Fixed/Mandatory Deductions: Funeral Cost
+    currentDeductions += DEDUCTION_FUNERAL;
+
     if (hasSpouse) currentDeductions += DEDUCTION_SPOUSE;
     currentDeductions += (childrenCount * DEDUCTION_CHILD);
     currentDeductions += (parentCount * DEDUCTION_PARENT);
     currentDeductions += (disabilityCount * DEDUCTION_DISABILITY);
-    if (hasFuneralCost) currentDeductions += DEDUCTION_FUNERAL;
+    
     if (!isNaN(otherDeductVal)) currentDeductions += otherDeductVal;
 
     // Add Basic Exemption (13.33M) to the total "Deductions & Exemptions" figure for display
@@ -57,7 +60,7 @@ export const EstateTaxCalculator: React.FC = () => {
     } else {
       setResult(null);
     }
-  }, [totalAssets, hasSpouse, childrenCount, parentCount, disabilityCount, hasFuneralCost, otherDeductions]);
+  }, [totalAssets, hasSpouse, childrenCount, parentCount, disabilityCount, otherDeductions]);
 
   // Helper Components
   const Counter = ({ label, value, onChange, max = 10 }: { label: string, value: number, onChange: (v: number) => void, max?: number }) => (
@@ -92,6 +95,23 @@ export const EstateTaxCalculator: React.FC = () => {
       </div>
       <div className={`w-11 h-6 flex items-center rounded-full p-1 duration-300 ease-in-out ${checked ? 'bg-primary' : 'bg-gray-300'}`}>
         <div className={`bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out ${checked ? 'translate-x-5' : ''}`}></div>
+      </div>
+    </div>
+  );
+
+  const FixedToggle = ({ label, subtext }: { label: string, subtext?: string }) => (
+    <div 
+      className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0 cursor-not-allowed opacity-80"
+    >
+      <div className="flex flex-col">
+        <div className="flex items-center gap-2">
+            <span className="text-gray-700 font-medium">{label}</span>
+            <span className="text-[10px] px-1.5 py-0.5 rounded bg-orange-100 text-primary font-bold">必選</span>
+        </div>
+        {subtext && <span className="text-xs text-gray-400">{subtext}</span>}
+      </div>
+      <div className="w-11 h-6 flex items-center rounded-full p-1 bg-primary">
+        <div className="bg-white w-4 h-4 rounded-full shadow-md transform translate-x-5"></div>
       </div>
     </div>
   );
@@ -136,6 +156,16 @@ export const EstateTaxCalculator: React.FC = () => {
             <section>
               <label className="block text-sm font-bold mb-3 text-textMain">扣除額項目勾選</label>
               <div className="bg-gray-50 rounded-lg border border-gray-200 p-5 space-y-1">
+                <FixedToggle 
+                    label="免稅額" 
+                    subtext={`扣除 $${(ESTATE_TAX_EXEMPTION/10000).toLocaleString()} 萬`}
+                />
+                
+                <FixedToggle 
+                    label="喪葬費 (標準扣除)" 
+                    subtext={`扣除 $${(DEDUCTION_FUNERAL/10000).toLocaleString()} 萬`}
+                />
+
                 <Toggle 
                   label="有配偶" 
                   checked={hasSpouse} 
@@ -143,13 +173,6 @@ export const EstateTaxCalculator: React.FC = () => {
                   subtext={`扣除 $${(DEDUCTION_SPOUSE/10000).toLocaleString()} 萬`}
                 />
                 
-                <Toggle 
-                  label="喪葬費 (標準扣除)" 
-                  checked={hasFuneralCost} 
-                  onChange={setHasFuneralCost}
-                  subtext={`扣除 $${(DEDUCTION_FUNERAL/10000).toLocaleString()} 萬`}
-                />
-
                 <Counter 
                   label="子女 (每人56萬)" 
                   value={childrenCount} 
@@ -182,6 +205,10 @@ export const EstateTaxCalculator: React.FC = () => {
             </section>
           </div>
         </div>
+        
+        {/* Tax Rate Bracket Table Component */}
+        <TaxRateReference />
+
       </div>
 
       {/* Right Column: Sticky Summary (4 cols) */}
@@ -203,7 +230,7 @@ export const EstateTaxCalculator: React.FC = () => {
                 -${totalDeductionAmount.toLocaleString()}
               </span>
             </div>
-             <p className="text-xs text-right text-gray-400 -mt-3 mb-2">(含1333萬免稅額)</p>
+             {/* Removed Exemption helper text here */}
 
             <div className="border-t border-dashed border-gray-200 my-2"></div>
 

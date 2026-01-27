@@ -18,9 +18,9 @@ export const GIFT_TAX_BRACKETS: TaxBracket[] = [
   { limit: Infinity, rate: 0.20, deduction: 3750000 },
 ];
 
-// Estate Tax Brackets
+// Estate Tax Brackets (Updated for 2025 / ROC Year 114)
 export const ESTATE_TAX_BRACKETS: TaxBracket[] = [
-  { limit: 50000000, rate: 0.10, deduction: 0 },
-  { limit: 100000000, rate: 0.15, deduction: 2500000 },
-  { limit: Infinity, rate: 0.20, deduction: 7500000 },
+  { limit: 56210000, rate: 0.10, deduction: 0 },
+  { limit: 112420000, rate: 0.15, deduction: 2810500 },
+  { limit: Infinity, rate: 0.20, deduction: 8431500 },
 ];

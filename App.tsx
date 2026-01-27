@@ -16,7 +16,7 @@ const App: React.FC = () => {
             遺產稅試算工具
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-base md:text-lg">
-            依據 2024 年最新稅法，協助您快速盤點資產狀況。
+            依據 民國114年(2025) 最新稅法，協助您快速盤點資產狀況。
             <br className="hidden md:inline"/>
             透過右側即時試算面板，精準掌握預估稅額與扣除額度。
           </p>
