@@ -6,18 +6,18 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-secondary flex flex-col font-sans">
       <Header />
-      
+
       <main className="flex-grow w-full max-w-7xl mx-auto px-4 md:px-12 py-12">
         <div className="text-center mb-12">
           <span className="text-primary font-bold tracking-wider uppercase text-sm mb-3 block">
             專業工具庫
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-textMain mb-4">
-            遺產稅試算工具
-          </h2>
+          <h1 className="text-3xl md:text-4xl font-bold text-textMain mb-4">
+            遺產稅試算工具 - 2026最新版
+          </h1>
           <p className="text-gray-500 max-w-2xl mx-auto text-base md:text-lg">
             依據 民國114年(2025) 最新稅法，協助您快速盤點資產狀況。
-            <br className="hidden md:inline"/>
+            <br className="hidden md:inline" />
             透過右側即時試算面板，精準掌握預估稅額與扣除額度。
           </p>
         </div>

@@ -7,3 +7,36 @@
     @apply bg-secondary text-textMain antialiased;
   }
 }
+
+@layer utilities {
+  .tax-result {
+    transition: all 0.3s ease;
+  }
+
+  .tax-result.updating {
+    transform: scale(1.05);
+    color: #f59e0b;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* 右側摘要改為置底懸浮 */
+  .summary-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 50;
+    /* Ensure it stays on top */
+    background-color: white;
+    /* Ensure it has background */
+  }
+
+  /* Add padding to body or main container to prevent content from being hidden behind fixed panel */
+  /* We can add a spacer class if needed, or just generally add padding-bottom to the main container logic if feasible. 
+     For now, we stick to the panel styling.
+  */
+}

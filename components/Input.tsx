@@ -1,16 +1,15 @@
 import React from 'react';
 
-interface InputProps {
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label: string;
   value: number | string;
   onChange: (val: string) => void;
-  placeholder?: string;
+  // placeholder, className, etc. are already covered by InputHTMLAttributes
   suffix?: string;
   helperText?: string;
-  className?: string;
 }
 
-export const Input: React.FC<InputProps> = ({ label, value, onChange, placeholder, suffix, helperText, className = "" }) => {
+export const Input: React.FC<InputProps> = ({ label, value, onChange, placeholder, suffix, helperText, className = "", ...rest }) => {
   return (
     <div className={`mb-4 ${className}`}>
       <label className="block text-sm font-bold mb-2 text-textMain">
@@ -23,6 +22,7 @@ export const Input: React.FC<InputProps> = ({ label, value, onChange, placeholde
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
+          {...rest}
         />
         {suffix && (
           <span className="absolute right-4 top-3 text-gray-500 font-medium pointer-events-none">{suffix}</span>
