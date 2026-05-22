@@ -12,7 +12,7 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, type }) =>
   const isZeroTax = result.taxAmount <= 0;
 
   return (
-    <div className="mt-6 bg-[#FAF5EF] rounded-lg p-5 border border-[#E8DCCF]">
+    <div className="mt-6 bg-[#F9F7F1] rounded-lg p-5 border border-[#D0D7E8]">
       <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">試算結果</h3>
       
       <div className="space-y-3">

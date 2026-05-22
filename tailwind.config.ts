@@ -8,14 +8,16 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#C68037', // Button/Accent Orange
-                secondary: '#FDF8F0', // Background Beige
-                textMain: '#4A3B32', // Dark Brown Text
-                textSub: '#8C8C8C', // Light Gray Text
-                cardBorder: '#E5E5E5',
+                primary:    '#9E741C', // Aged Brass
+                secondary:  '#F9F7F1', // Warm Off-White BG
+                textMain:   '#182948', // Indigo Navy
+                textSub:    '#3E557D', // Muted Blue-Grey
+                cardBorder: '#D0D7E8', // Cool Border
+                navy:       '#172D5B', // Deep Navy
             },
             fontFamily: {
-                sans: ['PingFang TC', 'Microsoft JhengHei', 'sans-serif'],
+                sans:    ['PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'sans-serif'],
+                display: ['DM Serif Display', 'Georgia', 'serif'],
             },
         },
     },

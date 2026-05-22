@@ -277,8 +277,8 @@ export const EstateTaxCalculator: React.FC = () => {
               value={`$${result ? result.taxableAmount.toLocaleString() : '0'}`}
             />
 
-            <div className={`bg-[#FAF5EF] -mx-6 px-6 py-4 mt-4 border-t border-b border-orange-100 tax-result ${isUpdating ? 'updating' : ''}`}>
-              <div className="flex flex-col items-center justify-center mb-1 text-[#d97706]">
+            <div className={`bg-[#F9F7F1] -mx-6 px-6 py-4 mt-4 border-t border-b border-orange-100 tax-result ${isUpdating ? 'updating' : ''}`}>
+              <div className="flex flex-col items-center justify-center mb-1 text-[#9E741C]">
                 <span className="font-bold text-lg mb-1">預估遺產稅</span>
                 <span className="font-bold" style={{ fontSize: '2rem' }}>
                   ${result ? result.taxAmount.toLocaleString() : '0'}
@@ -298,7 +298,7 @@ export const EstateTaxCalculator: React.FC = () => {
               妥善規劃保險預留稅源，不僅能覆蓋預估稅額，還能指定受益人，讓資產傳承更順利。
             </div>
 
-            <button className="w-full bg-primary hover:bg-[#B06A25] text-white font-bold py-3 px-4 rounded shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+            <button className="w-full bg-primary hover:bg-[#7D5D12] text-white font-bold py-3 px-4 rounded shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
               <span>預約專業稅務諮詢</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
